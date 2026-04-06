@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StudyTrack — AI Study Companion - Get your life together</title>
+  <title>StudyTrack — AI Study Companion</title>
   <meta name="description" content="Upload PDFs, let Gemini AI extract topics, track your study progress, take rich notes, and get instant summaries."/>
 
   <!-- Fonts -->
@@ -37,6 +37,7 @@
   </ul>
 
   <div class="nav-right">
+    <span id="backendStatusBadge" class="backend-status-badge status-warn">🔧 Checking…</span>
     <button class="guest-badge" id="guestBadge" onclick="showUserPanel()">
       <span id="userAvatar">👤</span>
       <span id="guestIdDisplay">Guest</span>
@@ -102,9 +103,9 @@
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-inner">
-      <div class="hero-badge">Powered by shiivahir · Free · No Sign-up Required</div>
-      <h1>Study smarter with<br/><em> tracking</em></h1>
-      <p>Upload your PDFs, let Jarvis extract every topic, track your progress, take rich notes, and get instant summaries — all in one beautiful workspace.</p>
+      <div class="hero-badge">Powered by Gemini 2.5 Flash · Free · No Sign-up Required</div>
+      <h1>Study smarter with<br/><em>AI-powered tracking</em></h1>
+      <p>Upload your PDFs, let AI extract every topic, track your progress, take rich notes, and get instant summaries — all in one beautiful workspace.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="navTo('files')">📁 Upload Your First PDF</button>
         <button class="btn btn-secondary" onclick="navTo('help')">❓ How It Works</button>
@@ -115,8 +116,8 @@
   <div class="features-strip">
     <div class="feature-card">
       <div class="feature-icon">🤖</div>
-      <h3>Topic Extraction</h3>
-      <p>We read your entire PDF and auto-generates a topic list split into Covered &amp; Remaining.</p>
+      <h3>AI Topic Extraction</h3>
+      <p>Gemini reads your entire PDF and auto-generates a topic list split into Covered &amp; Remaining.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📄</div>
@@ -126,7 +127,7 @@
     <div class="feature-card">
       <div class="feature-icon">📝</div>
       <h3>Rich Notes Panel</h3>
-      <p>Take notes with style alongside your PDF with bold, lists, headings, and more.</p>
+      <p>Take Notion-style notes alongside your PDF with bold, lists, headings, and more.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📊</div>
@@ -140,8 +141,8 @@
     </div>
     <div class="feature-card">
       <div class="feature-icon">✨</div>
-      <h3>Summary</h3>
-      <p>One-click summary of any PDF — key themes, core concepts, and personalized study tips.</p>
+      <h3>AI Summary</h3>
+      <p>One-click AI summary of any PDF — key themes, core concepts, and personalized study tips.</p>
     </div>
   </div>
 
@@ -213,7 +214,7 @@
       </div>
       <div class="viewer-header-actions">
         <button class="btn btn-secondary btn-sm" onclick="navTo('files')">← Change File</button>
-        <button class="btn btn-primary btn-sm" id="aiSummaryBtn" onclick="generateSummary()">✨Summary</button>
+        <button class="btn btn-primary btn-sm" id="aiSummaryBtn" onclick="generateSummary()">✨ AI Summary</button>
       </div>
     </div>
 
@@ -296,9 +297,9 @@
     <!-- AI Summary Box (shown/hidden dynamically) -->
     <div class="summary-box" id="summaryBox" style="display:none;">
       <div class="summary-header">
-        <h3>✨ Summary</h3>
+        <h3>✨ AI Summary</h3>
         <div class="summary-header-right">
-          <span class="ai-badge">Jarvis</span>
+          <span class="ai-badge">Gemini 2.5 Flash</span>
           <button class="btn btn-ghost btn-sm" onclick="document.getElementById('summaryBox').style.display='none'">✕ Close</button>
         </div>
       </div>
@@ -319,7 +320,7 @@
       </div>
       <div class="topics-header-actions">
         <button class="btn btn-secondary btn-sm" onclick="openAddTopicModal()">➕ Add Topic</button>
-        <button class="btn btn-primary btn-sm" id="aiTopicsBtn" onclick="extractTopics()">🤖 Extract Topics</button>
+        <button class="btn btn-primary btn-sm" id="aiTopicsBtn" onclick="extractTopics()">🤖 AI Extract Topics</button>
       </div>
     </div>
 
@@ -360,7 +361,7 @@
           <div id="topicListContainer">
             <div class="empty-state">
               <div class="empty-icon">🗂️</div>
-              <p>Select a file, then extract topics with Jarvis or add them manually.</p>
+              <p>Select a file, then extract topics with AI or add them manually.</p>
             </div>
           </div>
         </div>
@@ -436,13 +437,47 @@
 
     <div class="help-grid">
 
-     
+      <div class="help-card">
+        <h3>🚀 Getting Started</h3>
+        <div class="help-step">
+          <div class="step-num">1</div>
+          <p>Your <strong>Guest ID</strong> is auto-generated on first visit. Click the badge in the top-right to view or change it. Save it to restore your data later.</p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">2</div>
+          <p>Go to <strong>My Files</strong> and drag-drop or click to upload up to 5 PDFs. Files are tracked by their exact filename.</p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">3</div>
+          <p>Click <strong>Open</strong> on any file to jump straight to the PDF Viewer with your notes panel on the right.</p>
+        </div>
+      </div>
+
+      <div class="help-card">
+        <h3>🤖 Gemini API Setup</h3>
+        <div class="help-step">
+          <div class="step-num">1</div>
+          <p>Visit <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="help-link">aistudio.google.com → API Keys</a> and click <em>Create API Key</em>. It's free.</p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">2</div>
+          <p>Open <code>app.js</code> in any text editor. Near the very top, find:<br/><code>const GEMINI_API_KEY = "YOUR_KEY_HERE";</code></p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">3</div>
+          <p>Replace <code>YOUR_KEY_HERE</code> with your actual key. Save the file, reload the site. AI features are now active.</p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">4</div>
+          <p><strong>Model:</strong> <code>gemini-2.5-flash</code> — Google's fastest multimodal model that reads entire PDFs in one request.</p>
+        </div>
+      </div>
 
       <div class="help-card">
         <h3>📋 Managing Topics</h3>
         <div class="help-step">
           <div class="step-num">1</div>
-          <p>In <strong>Topics</strong>, select a file from the sidebar. Click <em>🤖 Extract Topics</em> to let Jarvis analyse and classify topics automatically.</p>
+          <p>In <strong>Topics</strong>, select a file from the sidebar. Click <em>🤖 AI Extract Topics</em> to let Gemini analyse and classify topics automatically.</p>
         </div>
         <div class="help-step">
           <div class="step-num">2</div>
@@ -470,7 +505,7 @@
         </div>
         <div class="help-step">
           <div class="step-num">3</div>
-          <p>Click <strong>✨ Summary</strong> to generate a structured study summary of the open PDF. </p>
+          <p>Click <strong>✨ AI Summary</strong> to generate a structured study summary of the open PDF. Requires a Gemini API key.</p>
         </div>
         <div class="help-step">
           <div class="step-num">4</div>
@@ -494,7 +529,21 @@
         </div>
       </div>
 
-      
+      <div class="help-card">
+        <h3>🚀 Deploying to GitHub Pages</h3>
+        <div class="help-step">
+          <div class="step-num">1</div>
+          <p>Create a GitHub repo. Upload <code>index.html</code>, <code>styles.css</code>, and <code>app.js</code> to the root.</p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">2</div>
+          <p>In the repo, go to <strong>Settings → Pages → Source</strong>, select <em>main branch / root</em>, and save.</p>
+        </div>
+        <div class="help-step">
+          <div class="step-num">3</div>
+          <p>Your site is live at <code>https://username.github.io/repo-name</code>. No backend server needed — Gemini API is called directly from your browser.</p>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -512,11 +561,11 @@
     <div class="contact-wrap">
       <div class="contact-card">
         <div class="contact-avatar">👨‍💻</div>
-        <div class="contact-name">SHIV AHIR</div>
+        <div class="contact-name">Developer</div>
         <div class="contact-role">Built with ❤️ for students everywhere</div>
         <div class="contact-links">
-          <a href="mailto:shiivahir@email.com" class="contact-link">✉️ Email</a>
-          <a href="https://github.com/shiivahir" target="_blank" rel="noopener" class="contact-link">🐙 GitHub</a>
+          <a href="mailto:your@email.com" class="contact-link">✉️ Email</a>
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="contact-link">🐙 GitHub</a>
           <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="contact-link">💼 LinkedIn</a>
         </div>
 
@@ -550,4 +599,3 @@
 
 </body>
 </html>
-
